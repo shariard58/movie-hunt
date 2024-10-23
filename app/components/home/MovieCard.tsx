@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const MovieCard = () => {
   return (
-    <figure className="shadow-lg p-3 border border-black/10 dark:border-white/10 rounded-xl max-w-[240px] w-full h-[320px] sm:max-w-[260px] sm:h-[340px] md:max-w-[280px] md:h-[360px] lg:max-w-[300px] lg:h-[380px] xl:max-w-[320px] xl:h-[400px] flex flex-col">
+    <figure className="shadow-lg p-3 border border-black/10 dark:border-white/10 rounded-xl max-w-[240px] w-full h-[320px] sm:max-w-[260px] sm:h-[340px] md:max-w-[280px] md:h-[360px] lg:max-w-[300px] lg:h-[380px] xl:max-w-[320px] xl:h-[400px] flex flex-col transition-transform duration-300 ease-in-out hover:translate-y-[-5px] cursor-pointer">
       <div
         className="bg-cover bg-center h-[160px] sm:h-[160px] md:h-[200px] lg:h-[220px] xl:h-[248px] rounded-lg overflow-hidden"
         style={{
