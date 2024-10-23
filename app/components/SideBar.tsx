@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaFilm, FaRegBookmark } from "react-icons/fa";
+import { FaFilm, FaInfoCircle, FaRegBookmark } from "react-icons/fa";
 
 export default function SideBar() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -11,10 +11,14 @@ export default function SideBar() {
   useEffect(() => {
     if (pathname === "/watchlist") {
       setActiveIndex(1);
-    } else {
+    } else if (pathname === "/") {
       setActiveIndex(0);
+    } else if (pathname.match(/^\/\d+$/)) {
+      setActiveIndex(2);
     }
   }, [pathname]);
+
+  const isDynamicRoute = pathname.match(/^\/\d+$/);
 
   return (
     <aside className="w-64 md:p-6 md:p-1">
@@ -49,6 +53,17 @@ export default function SideBar() {
               <span>My Watch List</span>
             </Link>
           </li>
+          {isDynamicRoute && (
+            <li>
+              <Link
+                href={pathname}
+                className={`flex items-center space-x-2 px-5 py-2 rounded-lg bg-[#FF8C00] text-white`}
+              >
+                <FaInfoCircle className="text-xl" />
+                <span>Movie Details</span>
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </aside>
