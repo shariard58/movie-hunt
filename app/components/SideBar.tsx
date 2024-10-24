@@ -13,12 +13,12 @@ export default function SideBar() {
       setActiveIndex(1);
     } else if (pathname === "/") {
       setActiveIndex(0);
-    } else if (pathname.match(/^\/\d+$/)) {
+    } else if (pathname.startsWith("/movies/")) {
       setActiveIndex(2);
     }
   }, [pathname]);
 
-  const isDynamicRoute = pathname.match(/^\/\d+$/);
+  const isDynamicRoute = pathname.startsWith("/movies/");
 
   return (
     <aside className="w-64 md:p-6 md:p-1">
