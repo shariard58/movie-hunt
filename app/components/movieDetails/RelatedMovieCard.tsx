@@ -18,7 +18,7 @@ const RelatedMovieCard = () => {
             {[...Array(5)].map((_, index) => (
               <Image
                 key={index}
-                src="/assets/icons/star.png" // Adjust the path to your star icon
+                src="/assets/icons/star.png"
                 width={14}
                 height={14}
                 alt="Star Icon"

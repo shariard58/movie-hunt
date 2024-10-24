@@ -2,6 +2,7 @@ import RelatedMovieCard from "@/app/components/movieDetails/RelatedMovieCard";
 import { FaRegBookmark } from "react-icons/fa";
 
 const MovieDetails = () => {
+  // Predefined movie data with formatted release date
   const movie = {
     title: "Joker",
     overview:
@@ -20,6 +21,11 @@ const MovieDetails = () => {
     ],
   };
 
+  // Pre-formatting release date
+  const formattedReleaseDate = new Date(
+    movie.release_date
+  ).toLocaleDateString();
+
   // Mock related movies data
   const relatedMovies = [
     { id: 2, title: "The Dark Knight", poster_path: "/assets/dark_knight.jpg" },
@@ -31,7 +37,6 @@ const MovieDetails = () => {
 
   return (
     <>
-      {" "}
       <div className="flex flex-col md:flex-row w-full">
         {/* Left Section */}
         <div
@@ -47,8 +52,7 @@ const MovieDetails = () => {
           <p className="my-2 text-black italic">{movie.overview}</p>
           <ul className="text-black space-y-2 my-4">
             <li>
-              <strong>Release Date:</strong>{" "}
-              {new Date(movie.release_date).toLocaleDateString()}
+              <strong>Release Date:</strong> {formattedReleaseDate}
             </li>
             <li>
               <strong>Average Vote:</strong> {movie.vote_average}
@@ -80,12 +84,13 @@ const MovieDetails = () => {
           </button>
         </div>
       </div>
+
       {/* Related Movies Section */}
       <div className="mt-8 p-8 bg-white">
         <h2 className="text-2xl font-bold text-black">Related Movies</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
-          {relatedMovies.map((movie) => (
-            <RelatedMovieCard key={movie.id} />
+          {relatedMovies.map((relatedMovie) => (
+            <RelatedMovieCard key={relatedMovie.id} movie={relatedMovie} />
           ))}
         </div>
       </div>

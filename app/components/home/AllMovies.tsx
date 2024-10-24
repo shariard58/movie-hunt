@@ -1,14 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
+import { MovieData } from "../../../types/movieTypes";
 import MovieCard from "./MovieCard";
+// import { QueryClientProvider, QueryClient } from "react-query";
 export default function AllMovies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieData[]>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  // creating a client object
+  // const client = new QueryClient()
+
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  const fetchMovies = async (pageNumber) => {
+
+  const fetchMovies = async (pageNumber: number) => {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${pageNumber}`
@@ -19,7 +25,7 @@ export default function AllMovies() {
       }
 
       const data = await response.json();
-      return data.results;
+      return data.results as MovieData[];
     } catch (error) {
       console.error("Failed to fetch movies:", error);
       setIsError(true);
