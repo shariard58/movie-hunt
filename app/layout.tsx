@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
+import SubHeader from "./components/SubHeader"; // Import the SubHeader component
 import "./globals.css";
 
 const geistSans = localFont({
@@ -39,6 +40,7 @@ export default function RootLayout({
           {/* Main Content */}
           <div className="flex-1">
             <Header />
+            <SubHeader /> {/* SubHeader placed below Header */}
             <main className="p-4">{children}</main>
           </div>
         </div>
