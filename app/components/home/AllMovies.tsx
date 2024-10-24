@@ -26,6 +26,8 @@ export default function AllMovies() {
     }
   };
 
+  console.log("All movies are", movies);
+
   useEffect(() => {
     const loadMovies = async () => {
       setIsLoading(true);
@@ -54,7 +56,9 @@ export default function AllMovies() {
       <div className="container mx-auto px-4 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {movies &&
-            movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+            movies.map((movie, index) => (
+              <MovieCard key={index} movie={movie} />
+            ))}
         </div>
       </div>
       <button
