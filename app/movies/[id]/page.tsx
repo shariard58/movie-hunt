@@ -1,6 +1,6 @@
 import RelatedMovieCard from "@/app/components/movieDetails/RelatedMovieCard";
+import { fetchMovieCast, fetchMovieDetails } from "@/lib/movieDetailsApi";
 import { FaRegBookmark } from "react-icons/fa";
-
 interface MovieDetailsProps {
   params: { id: string };
 }
@@ -8,7 +8,16 @@ interface MovieDetailsProps {
 const MovieDetails = async ({ params }: MovieDetailsProps) => {
   const { id } = await params; // Awaiting params object
 
-  console.log("The movie id of this page is", id);
+  // console.log("The movie id of this page is", id);
+
+  // fetching movie data
+  const movieData = await fetchMovieDetails(id);
+
+  console.log("The movie details of this page is", movieData);
+
+  // fetching cast data of the movie
+  const castData = await fetchMovieCast(id);
+
   // Predefined movie data with formatted release date
   const movie = {
     title: "Joker",
