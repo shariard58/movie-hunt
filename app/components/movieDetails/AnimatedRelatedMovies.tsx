@@ -1,6 +1,6 @@
 "use client";
 import { RelatedMovie } from "@/types/relatedMovieTypes";
-import { motion } from "framer-motion";
+import { motion, MotionProps } from "framer-motion"; // Import MotionProps
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,31 +10,14 @@ interface AnimatedRelatedMoviesProps {
 
 type RelatedMovieCardProps = {
   movie: RelatedMovie;
-};
+} & MotionProps; // Extend MotionProps
 
-const RelatedMovieCard = ({ movie }: RelatedMovieCardProps) => {
+const RelatedMovieCard = ({ movie, ...motionProps }: RelatedMovieCardProps) => {
   const starCount = movie.vote_average ? Math.round(movie.vote_average / 2) : 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 2,
-          ease: "easeOut",
-        },
-      }}
-      exit={{
-        opacity: 0,
-        y: 20,
-        transition: {
-          duration: 2,
-          ease: "easeIn",
-        },
-      }}
-      viewport={{ once: false }}
+      {...motionProps}
       className="relative shadow-lg p-3 border border-gray-200 rounded-lg sm:max-w-[280px] h-[350px] flex flex-col transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer overflow-hidden"
     >
       <div
