@@ -61,12 +61,12 @@ export default function AllMovies() {
     setPage(1);
   };
 
-  console.log("All the movies are", movies);
+  // console.log("All the movies are", movies);
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Error fetching movies</div>;
 
   return (
-    <div className="flex justify-start items-start">
+    <div className="flex justify-start items-start mb-8">
       <div className="w-full">
         <SearchInput
           searchValue={searchTerm}

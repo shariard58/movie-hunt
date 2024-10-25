@@ -6,6 +6,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  // console.log("the movie is", movie);
   const starRating = Math.round(movie.vote_average / 2);
   // release date
   const releaseDate = new Date(movie.release_date).toLocaleDateString("en-US", {
@@ -41,7 +42,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         </div>
         <Link
           className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
-          href="/movies/1"
+          href={`/movies/${movie.id}`}
           scroll={false}
         >
           <Image

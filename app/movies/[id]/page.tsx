@@ -1,7 +1,14 @@
 import RelatedMovieCard from "@/app/components/movieDetails/RelatedMovieCard";
 import { FaRegBookmark } from "react-icons/fa";
 
-const MovieDetails = () => {
+interface MovieDetailsProps {
+  params: { id: string };
+}
+
+const MovieDetails = async ({ params }: MovieDetailsProps) => {
+  const { id } = await params; // Awaiting params object
+
+  console.log("The movie id of this page is", id);
   // Predefined movie data with formatted release date
   const movie = {
     title: "Joker",
