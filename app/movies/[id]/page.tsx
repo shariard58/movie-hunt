@@ -1,4 +1,4 @@
-import RelatedMovieCard from "@/app/components/movieDetails/RelatedMovieCard";
+import AnimatedRelatedMovies from "@/app/components/movieDetails/AnimatedRelatedMovies";
 import {
   fetchMovieCast,
   fetchMovieDetails,
@@ -99,15 +99,7 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
       </div>
 
       {/* Related Movies Section */}
-      <div className="mt-8 p-8 bg-white">
-        <h2 className="text-2xl font-bold text-black">Related Movies</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
-          {relatedMovies &&
-            relatedMovies.map((relatedMovie) => (
-              <RelatedMovieCard key={relatedMovie.id} movie={relatedMovie} />
-            ))}
-        </div>
-      </div>
+      <AnimatedRelatedMovies relatedMovies={relatedMovies} />
     </>
   );
 };
