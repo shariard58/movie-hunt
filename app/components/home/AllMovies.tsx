@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { MovieData } from "../../../types/movieTypes";
+import { MovieType } from "../../../types/movieTypes";
 import SearchInput from "../input/SearchInput";
 import LoadingSpinner from "../loading/LoadingSpinner";
 import MovieCard from "./MovieCard";
@@ -26,7 +26,7 @@ export default function AllMovies() {
     data: movies,
     isLoading,
     isError,
-  } = useQuery<MovieData[]>({
+  } = useQuery<MovieType[]>({
     queryKey: ["movies", page, debouncedSearchTerm],
     queryFn: async () => {
       let url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
@@ -43,7 +43,7 @@ export default function AllMovies() {
       const data = await response.json();
       return data.results;
     },
-    keepPreviousData: true,
+
     enabled: debouncedSearchTerm.length >= 0,
   });
 
@@ -56,10 +56,12 @@ export default function AllMovies() {
   };
 
   // Handle change in search input
-  const handleSearchChange = (value) => {
+  const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     setPage(1);
   };
+
+  const hasMovies = movies?.length || 0;
 
   // console.log("All the movies are", movies);
   if (isLoading) return <LoadingSpinner />;
@@ -107,9 +109,9 @@ export default function AllMovies() {
             </button>
             <button
               onClick={loadMoreMovies}
-              disabled={movies.length < 20}
+              disabled={hasMovies < 20}
               className={`py-3 px-4 ${
-                movies.length < 20
+                hasMovies < 20
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-orange-400 hover:bg-orange-600"
               } text-[14px] text-white font-semibold rounded-lg shadow-md transition duration-200`}
