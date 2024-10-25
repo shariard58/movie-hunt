@@ -78,10 +78,15 @@ export default function AllMovies() {
         </h2>
         <div className="mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {movies &&
+            {movies && movies.length > 0 ? (
               movies.map((movie, index) => (
                 <MovieCard key={index} movie={movie} />
-              ))}
+              ))
+            ) : (
+              <div className="col-span-full text-center text-lg text-gray-500">
+                No movies found
+              </div>
+            )}
           </div>
         </div>
 
