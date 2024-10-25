@@ -1,56 +1,41 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { MovieData } from "../../../types/movieTypes";
 import MovieCard from "./MovieCard";
-// import { QueryClientProvider, QueryClient } from "react-query";
 export default function AllMovies() {
-  const [movies, setMovies] = useState<MovieData[]>([]);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  // creating a client object
-  // const client = new QueryClient()
-
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  const fetchMovies = async (pageNumber: number) => {
-    try {
+  // Fetching movies data  using React Query
+  const {
+    data: movies,
+    isLoading,
+    isError,
+  } = useQuery<MovieData[]>({
+    queryKey: ["movies", page],
+    queryFn: async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${pageNumber}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`
       );
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
       const data = await response.json();
-      return data.results as MovieData[];
-    } catch (error) {
-      console.error("Failed to fetch movies:", error);
-      setIsError(true);
-    }
-  };
-
-  console.log("All movies are", movies);
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      setIsLoading(true);
-      const newMovies = await fetchMovies(page);
-      if (newMovies) {
-        setMovies((prevMovies) => [...prevMovies, ...newMovies]);
-      }
-      setIsLoading(false);
-    };
-
-    loadMovies();
-  }, [page]);
+      return data.results;
+    },
+    keepPreviousData: true,
+  });
 
   const loadMoreMovies = () => {
     setPage((old) => old + 1);
   };
 
+  const loadPreviousMovies = () => {
+    setPage((old) => old - 1);
+  };
+
+  console.log("All the movies are", movies);
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching movies</div>;
 
@@ -59,7 +44,7 @@ export default function AllMovies() {
       <h2 className="sm:text-[18px] md:text-[22px] lg:text-[18px] mb:2 md:mb-3 font-extrabold">
         All Movies
       </h2>
-      <div className="container mx-auto px-4 ">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {movies &&
             movies.map((movie, index) => (
@@ -67,12 +52,33 @@ export default function AllMovies() {
             ))}
         </div>
       </div>
-      <button
-        onClick={loadMoreMovies}
-        className="mt-4 p-2 bg-blue-500 text-white"
-      >
-        Load More
-      </button>
+
+      <div className="flex justify-center items-center">
+        <div className="flex gap-4">
+          <button
+            onClick={loadPreviousMovies}
+            disabled={page === 1}
+            className={`py-3 px-4 ${
+              page === 1
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-orange-400 hover:bg-orange-600"
+            } text-[14px] text-white font-semibold rounded-lg shadow-md transition duration-200`}
+          >
+            Previous
+          </button>
+          <button
+            onClick={loadMoreMovies}
+            disabled={movies.length < 20}
+            className={`py-3 px-4 ${
+              movies.length < 20
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-orange-400 hover:bg-orange-600"
+            } text-[14px] text-white font-semibold rounded-lg shadow-md transition duration-200`}
+          >
+            Load More
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
