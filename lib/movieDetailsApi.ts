@@ -38,3 +38,23 @@ export const fetchMovieCast = async (id: string) => {
 
   return data;
 };
+
+// Fetching  related movies
+export const fetchRelatedMovies = async (id: string) => {
+  const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch related movies");
+  }
+
+  const data = await response.json();
+
+  if (!data || !data.results) {
+    throw new Error("No related movies found");
+  }
+
+  return data.results;
+};
