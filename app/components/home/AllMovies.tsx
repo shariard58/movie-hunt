@@ -1,24 +1,42 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieData } from "../../../types/movieTypes";
+import SearchInput from "../input/SearchInput";
 import LoadingSpinner from "../loading/LoadingSpinner";
 import MovieCard from "./MovieCard";
 export default function AllMovies() {
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  // Fetching movies data  using React Query
+  // Debounce the search term
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 2000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
   const {
     data: movies,
     isLoading,
     isError,
   } = useQuery<MovieData[]>({
-    queryKey: ["movies", page],
+    queryKey: ["movies", page, debouncedSearchTerm],
     queryFn: async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`
-      );
+      let url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
+
+      // If there is a search term with at least 2 characters
+      if (debouncedSearchTerm.length >= 2) {
+        url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${debouncedSearchTerm}&page=${page}`;
+      }
+
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -26,6 +44,7 @@ export default function AllMovies() {
       return data.results;
     },
     keepPreviousData: true,
+    enabled: debouncedSearchTerm.length >= 0,
   });
 
   const loadMoreMovies = () => {
@@ -36,16 +55,27 @@ export default function AllMovies() {
     setPage((old) => old - 1);
   };
 
+  // Handle change in search input
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+    setPage(1);
+  };
+
   console.log("All the movies are", movies);
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Error fetching movies</div>;
 
   return (
-    <div>
-      <h2 className="sm:text-[18px] md:text-[22px] lg:text-[18px] mb:2 md:mb-3 font-extrabold">
+    <div className="">
+      <SearchInput
+        searchValue={searchTerm}
+        onSearchChange={handleSearchChange}
+      />
+
+      <h2 className="sm:text-[18px] md:text-[22px] lg:text-[18px] mb:2 md:mb-3 font-extrabold mt-4">
         All Movies
       </h2>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto ">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {movies &&
             movies.map((movie, index) => (
