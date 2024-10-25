@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { MovieData } from "../../../types/movieTypes";
+import LoadingSpinner from "../loading/LoadingSpinner";
 import MovieCard from "./MovieCard";
 export default function AllMovies() {
   const [page, setPage] = useState(1);
@@ -36,7 +37,7 @@ export default function AllMovies() {
   };
 
   console.log("All the movies are", movies);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Error fetching movies</div>;
 
   return (
