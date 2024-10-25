@@ -7,13 +7,17 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   // console.log("the movie is", movie);
-  const starRating = Math.round(movie.vote_average / 2);
+  const starRating = Math.round((movie.vote_average ?? 6) / 2);
+
   // release date
-  const releaseDate = new Date(movie.release_date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const releaseDate = movie.release_date
+    ? new Date(movie.release_date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "Unknown Release Date";
+
   return (
     <figure className="shadow-lg p-3 border border-black/10 dark:border-white/10 rounded-xl sm:max-w-[300px]  h-[320px]  sm:h-[340px] md:max-w-[320px] md:h-[360px] lg:max-w-[340px] lg:h-[380px] xl:max-w-[360px] xl:h-[400px] flex flex-col transition-transform duration-300 ease-in-out hover:translate-y-[-5px] cursor-pointer">
       <div
