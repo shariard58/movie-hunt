@@ -83,8 +83,10 @@ export default function AllMovies() {
                 <MovieCard key={index} movie={movie} />
               ))
             ) : (
-              <div className="col-span-full text-center text-lg text-gray-500">
-                No movies found
+              <div className="col-span-full h-[70vh] flex justify-center items-center">
+                <p className="text-gray-500 text-md md:text-3xl font-bold text-center">
+                  Sorry, no movies found.
+                </p>
               </div>
             )}
           </div>
