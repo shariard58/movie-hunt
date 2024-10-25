@@ -52,9 +52,8 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
           <p className="my-2 text-black italic">{movieData.overview}</p>
           <ul className="text-black space-y-2 my-4">
             <li>
-              <strong>Release Date:</strong> {formattedReleaseDate}
+              <strong>Release Date:</strong> {formattedReleaseDate || "N/A"}
             </li>
-
             <li>
               <strong>Run Time:</strong>{" "}
               {movieData?.runtime
@@ -62,31 +61,33 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
                 : "102 minutes"}
             </li>
             <li>
-              <strong>Average Vote:</strong> {movieData.vote_average ?? ""}
+              <strong>Average Vote:</strong>{" "}
+              {movieData.vote_average?.toFixed(1) ?? ""}
             </li>
             <li>
               <strong>Vote Count:</strong> {movieData.vote_count ?? ""}
             </li>
             <li>
-              <strong>Popularity:</strong> {movieData.popularity ?? ""}
+              <strong>Popularity:</strong>{" "}
+              {movieData.popularity?.toFixed(1) ?? ""}
             </li>
             <li>
               <strong>Genres:</strong>{" "}
-              {movieData.genres.map((genre) => genre.name).join(", ") ?? ""}
+              {movieData.genres?.length > 0
+                ? movieData.genres.map((genre) => genre.name).join(", ")
+                : " "}
             </li>
             <li>
               <strong>Budget:</strong> $
-              {movieData.budget ? movieData.budget.toLocaleString() : ""}
+              {movieData.budget ? movieData.budget.toLocaleString() : " "}
             </li>
             <li>
               <strong>Revenue:</strong> $
-              {movieData.revenue ? movieData.revenue.toLocaleString() : ""}
+              {movieData.revenue ? movieData.revenue.toLocaleString() : " "}
             </li>
-
             <li>
               <strong>Adult:</strong> {movieData.adult ? "Yes" : "No"}
             </li>
-
             <li>
               <strong>Original Language:</strong>{" "}
               {movieData.original_language === "en" ? "English" : "Other"}
