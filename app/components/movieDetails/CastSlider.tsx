@@ -1,7 +1,5 @@
-
 "use client";
 import React from "react";
-
 
 interface CastMember {
   adult: boolean;
@@ -18,9 +16,8 @@ interface CastMember {
   order: number;
 }
 
-
 interface CastSliderProps {
-  castData: CastMember[]; 
+  castData: CastMember[];
 }
 
 const CastSlider: React.FC<CastSliderProps> = ({ castData }) => {
