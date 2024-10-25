@@ -14,14 +14,24 @@ type RelatedMovieCardProps = {
 
 const RelatedMovieCard = ({ movie }: RelatedMovieCardProps) => {
   const starCount = movie.vote_average ? Math.round(movie.vote_average / 2) : 0;
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -1 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{
         opacity: 1,
-        x: 1,
+        y: 0,
         transition: {
-          duration: 3,
+          duration: 2,
+          ease: "easeOut",
+        },
+      }}
+      exit={{
+        opacity: 0,
+        y: 20,
+        transition: {
+          duration: 2,
+          ease: "easeIn",
         },
       }}
       viewport={{ once: false }}
@@ -87,7 +97,26 @@ const AnimatedRelatedMovies: React.FC<AnimatedRelatedMoviesProps> = ({
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
         {relatedMovies &&
           relatedMovies.map((relatedMovie, index) => (
-            <RelatedMovieCard key={index} movie={relatedMovie} />
+            <RelatedMovieCard
+              key={relatedMovie.id}
+              movie={relatedMovie}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
+                  delay: index * 0.1,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                y: 20,
+                transition: {
+                  duration: 0.5,
+                },
+              }}
+            />
           ))}
       </div>
     </div>
@@ -95,7 +124,3 @@ const AnimatedRelatedMovies: React.FC<AnimatedRelatedMoviesProps> = ({
 };
 
 export default AnimatedRelatedMovies;
-
-{
-  /* <RelatedMovieCard key={index} movie={relatedMovie} /> */
-}
