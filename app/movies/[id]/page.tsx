@@ -1,11 +1,11 @@
 import AnimatedRelatedMovies from "@/app/components/movieDetails/AnimatedRelatedMovies";
+import CastSlider from "@/app/components/movieDetails/CastSlider";
 import {
   fetchMovieCast,
   fetchMovieDetails,
   fetchRelatedMovies,
 } from "@/lib/movieDetailsApi";
 import { FaRegBookmark } from "react-icons/fa";
-
 interface MovieDetailsProps {
   params: { id: string };
 }
@@ -18,6 +18,8 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
 
   // Fetching cast data of the movie
   const castData = await fetchMovieCast(id);
+
+  // console.log("The cast data from the index page", castData);
 
   // Fetching the related movies of this movies
 
@@ -33,7 +35,7 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
       <div className="flex flex-col md:flex-row w-full">
         {/* Left Section: Movie Poster */}
         <div
-          className="md:w-1/2 bg-cover bg-center h-[70vh]"
+          className="sm:px-4 md:w-1/2 bg-cover bg-center h-[70vh]"
           style={{
             backgroundImage: `url(${
               movieData.backdrop_path
@@ -96,6 +98,10 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
             Add to Watch List
           </button>
         </div>
+      </div>
+
+      <div className="mt-4 hidden md:block">
+        {castData && castData.cast && <CastSlider castData={castData.cast} />}
       </div>
 
       {/* Related Movies Section */}
