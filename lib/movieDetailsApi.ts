@@ -15,7 +15,8 @@ export const fetchMovieDetails = async (id: string): Promise<MovieDetails> => {
     throw new Error("Failed to fetch movie details");
   }
   const data = await response.json();
-  return MovieDetailsSchema.parse(data);
+  return data;
+  //   return MovieDetailsSchema.parse(data);
 };
 
 // Fetch cast information
