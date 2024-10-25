@@ -100,12 +100,16 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
         </div>
       </div>
 
-      <div className="mt-4 hidden md:block">
+      <div className="my-4 hidden md:block">
+        {/* <ExampleSlider /> */}
         {castData && castData.cast && <CastSlider castData={castData.cast} />}
       </div>
 
+      <div>
+        <AnimatedRelatedMovies relatedMovies={relatedMovies} />
+      </div>
+
       {/* Related Movies Section */}
-      <AnimatedRelatedMovies relatedMovies={relatedMovies} />
     </>
   );
 };
