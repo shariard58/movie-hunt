@@ -1,5 +1,9 @@
 import RelatedMovieCard from "@/app/components/movieDetails/RelatedMovieCard";
-import { fetchMovieCast, fetchMovieDetails } from "@/lib/movieDetailsApi";
+import {
+  fetchMovieCast,
+  fetchMovieDetails,
+  fetchRelatedMovies,
+} from "@/lib/movieDetailsApi";
 import { FaRegBookmark } from "react-icons/fa";
 
 interface MovieDetailsProps {
@@ -12,24 +16,17 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
   // Fetching movie data
   const movieData = await fetchMovieDetails(id);
 
-  console.log("The movie details of this page is", movieData);
-
   // Fetching cast data of the movie
   const castData = await fetchMovieCast(id);
 
+  // Fetching the related movies of this movies
+
+  const relatedMovies = await fetchRelatedMovies(id);
+
   // Pre-formatting release date
   const formattedReleaseDate = new Date(
-    movieData.release_date
+    movieData?.release_date
   ).toLocaleDateString();
-
-  // Mock related movies data
-  const relatedMovies = [
-    { id: 2, title: "The Dark Knight", poster_path: "/assets/dark_knight.jpg" },
-    { id: 3, title: "Fight Club", poster_path: "/assets/fight_club.jpg" },
-    { id: 4, title: "Psycho", poster_path: "/assets/psycho.jpg" },
-    { id: 5, title: "Taxi Driver", poster_path: "/assets/taxi_driver.jpg" },
-    { id: 6, title: "Se7en", poster_path: "/assets/seven.jpg" },
-  ];
 
   return (
     <>
@@ -105,9 +102,10 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
       <div className="mt-8 p-8 bg-white">
         <h2 className="text-2xl font-bold text-black">Related Movies</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
-          {relatedMovies.map((relatedMovie) => (
-            <RelatedMovieCard key={relatedMovie.id} movie={relatedMovie} />
-          ))}
+          {relatedMovies &&
+            relatedMovies.map((relatedMovie) => (
+              <RelatedMovieCard key={relatedMovie.id} movie={relatedMovie} />
+            ))}
         </div>
       </div>
     </>
