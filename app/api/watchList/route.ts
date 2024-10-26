@@ -12,7 +12,7 @@ interface WatchlistData {
 // ro read data from the file
 const readData = (): WatchlistData => {
   try {
-    const jsonData = fs.readFileSync(filePath, "ucs2");
+    const jsonData = fs.readFileSync(filePath, "utf8");
     return JSON.parse(jsonData);
   } catch (error) {
     console.error("Error reading data:", error);
@@ -32,7 +32,7 @@ const writeData = (data: WatchlistData): void => {
 // The Get api to get all the response from the Data .
 export async function GET() {
   const data = readData();
-  return NextResponse.json(data.watchlist);
+  return NextResponse.json({ watchlist: data.watchlist });
 }
 
 // The post api
