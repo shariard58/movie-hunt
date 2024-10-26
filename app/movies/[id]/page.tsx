@@ -6,6 +6,7 @@ import {
   fetchMovieDetails,
   fetchRelatedMovies,
 } from "@/lib/movieDetailsApi";
+
 interface PageProps {
   params: Promise<{ id: string }> | undefined;
 }
@@ -14,7 +15,7 @@ export default async function MovieDetails({ params }: PageProps) {
   const resolvedParams = await params;
   const movieId = resolvedParams?.id ? resolvedParams.id : "1";
 
-  // Fetching movie data
+  // Fetching movie data and asserting the type
   const movieData = await fetchMovieDetails(movieId);
 
   // Fetching cast data of the movie
@@ -94,9 +95,10 @@ export default async function MovieDetails({ params }: PageProps) {
               {movieData.original_language === "en" ? "English" : "Other"}
             </li>
           </ul>
-
-          {/* watchlist buton  */}
-          <WatchlistButton movie={movieData} />
+          {/* Watchlist button */}
+          {movieData && movieData.id !== undefined && (
+            <WatchlistButton movieId={movieData.id.toString()} />
+          )}
         </div>
       </div>
 
@@ -108,8 +110,6 @@ export default async function MovieDetails({ params }: PageProps) {
       <div>
         <AnimatedRelatedMovies relatedMovies={relatedMovies} />
       </div>
-
-      {/* Related Movies Section */}
     </>
   );
 }
