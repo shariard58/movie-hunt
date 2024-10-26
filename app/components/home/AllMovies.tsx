@@ -94,7 +94,7 @@ export default function AllMovies() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-8">
           <div className="flex gap-4">
             <button
               onClick={loadPreviousMovies}
