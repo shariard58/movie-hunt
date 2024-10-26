@@ -95,6 +95,258 @@
       "video": false,
       "vote_average": 7.7,
       "vote_count": 4799
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xi1VSt3DtkevUmzCx2mNlCoDe74.jpg",
+      "belongs_to_collection": {
+        "id": 945475,
+        "name": "Beetlejuice Collection",
+        "poster_path": "/2N5c3ue4bxvTO5OO3bOjHPJZs3H.jpg",
+        "backdrop_path": "/bJ76WnTj7G8dYQSZJvZejna262D.jpg"
+      },
+      "budget": 100000000,
+      "genres": [
+        {
+          "id": 35,
+          "name": "Comedy"
+        },
+        {
+          "id": 14,
+          "name": "Fantasy"
+        },
+        {
+          "id": 27,
+          "name": "Horror"
+        }
+      ],
+      "homepage": "https://www.beetlejuicemovie.com",
+      "id": 917496,
+      "imdb_id": "tt2049403",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_title": "Beetlejuice Beetlejuice",
+      "overview": "After a family tragedy, three generations of the Deetz family return home to Winter River. Still haunted by Betelgeuse, Lydia's life is turned upside down when her teenage daughter, Astrid, accidentally opens the portal to the Afterlife.",
+      "popularity": 1101.603,
+      "poster_path": "/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg",
+      "production_companies": [
+        {
+          "id": 174,
+          "logo_path": "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
+          "name": "Warner Bros. Pictures",
+          "origin_country": "US"
+        },
+        {
+          "id": 360,
+          "logo_path": "/hbDlIbBdBe0nVFTeZ7hDX3d5n2N.png",
+          "name": "Geffen Pictures",
+          "origin_country": "US"
+        },
+        {
+          "id": 81,
+          "logo_path": "/8wOfUhA7vwU2gbPjQy7Vv3EiF0o.png",
+          "name": "Plan B Entertainment",
+          "origin_country": "US"
+        },
+        {
+          "id": 8601,
+          "logo_path": "/kqubCH3sfBAk4znUj7hjqv8ffgi.png",
+          "name": "Tim Burton Productions",
+          "origin_country": "US"
+        },
+        {
+          "id": 216687,
+          "logo_path": null,
+          "name": "Domain Entertainment",
+          "origin_country": "US"
+        },
+        {
+          "id": 228708,
+          "logo_path": null,
+          "name": "Tommy Harper Productions",
+          "origin_country": "US"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "release_date": "2024-09-04",
+      "revenue": 435300598,
+      "runtime": 105,
+      "spoken_languages": [
+        {
+          "english_name": "English",
+          "iso_639_1": "en",
+          "name": "English"
+        },
+        {
+          "english_name": "Vietnamese",
+          "iso_639_1": "vi",
+          "name": "Tiếng Việt"
+        }
+      ],
+      "status": "Released",
+      "tagline": "The ghost with the most is back.",
+      "title": "Beetlejuice Beetlejuice",
+      "video": false,
+      "vote_average": 7.198,
+      "vote_count": 1534
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3m0j3hCS8kMAaP9El6Vy5Lqnyft.jpg",
+      "belongs_to_collection": {
+        "id": 1126392,
+        "name": "The Platform Collection",
+        "poster_path": "/nhzz8k3Kh1roYdPvbryX3VtgLZN.jpg",
+        "backdrop_path": "/m7REj1vsxi2aEcwT7iFHPRXbwgN.jpg"
+      },
+      "budget": 0,
+      "genres": [
+        {
+          "id": 878,
+          "name": "Science Fiction"
+        },
+        {
+          "id": 27,
+          "name": "Horror"
+        }
+      ],
+      "homepage": "https://www.netflix.com/title/81284730",
+      "id": 1125510,
+      "imdb_id": "tt27729779",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_title": "El hoyo 2",
+      "overview": "After a mysterious leader imposes his law in a brutal system of vertical cells, a new arrival battles against a dubious food distribution method.",
+      "popularity": 964.542,
+      "poster_path": "/z2m3g8QOEMNyslgBU5vsyzRwgSz.jpg",
+      "production_companies": [
+        {
+          "id": 52270,
+          "logo_path": null,
+          "name": "Basque Films",
+          "origin_country": "ES"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "ES",
+          "name": "Spain"
+        }
+      ],
+      "release_date": "2024-09-27",
+      "revenue": 0,
+      "runtime": 100,
+      "spoken_languages": [
+        {
+          "english_name": "Spanish",
+          "iso_639_1": "es",
+          "name": "Español"
+        }
+      ],
+      "status": "Released",
+      "tagline": "",
+      "title": "The Platform 2",
+      "video": false,
+      "vote_average": 5.7,
+      "vote_count": 710
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/l0Y9OzRWKmlzZcGy4olKaOPXsru.jpg",
+      "belongs_to_collection": null,
+      "budget": 40000000,
+      "genres": [
+        {
+          "id": 10749,
+          "name": "Romance"
+        },
+        {
+          "id": 14,
+          "name": "Fantasy"
+        },
+        {
+          "id": 16,
+          "name": "Animation"
+        }
+      ],
+      "homepage": "http://corpsebridemovie.warnerbros.com/",
+      "id": 3933,
+      "imdb_id": "tt0121164",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_title": "Corpse Bride",
+      "overview": "Set in a 19th-century European village, this stop-motion animation feature follows the story of Victor, a young man whisked away to the underworld and wed to a mysterious corpse bride, while his real bride Victoria waits bereft in the land of the living.",
+      "popularity": 802.695,
+      "poster_path": "/isb2Qow76GpqYmsSyfdMfsYAjts.jpg",
+      "production_companies": [
+        {
+          "id": 8601,
+          "logo_path": "/kqubCH3sfBAk4znUj7hjqv8ffgi.png",
+          "name": "Tim Burton Productions",
+          "origin_country": "US"
+        },
+        {
+          "id": 11537,
+          "logo_path": "/AgCkAk8EpUG9fTmK6mWcaJA2Zwh.png",
+          "name": "Laika",
+          "origin_country": "US"
+        },
+        {
+          "id": 57751,
+          "logo_path": null,
+          "name": "Patalex Productions",
+          "origin_country": "GB"
+        },
+        {
+          "id": 174,
+          "logo_path": "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
+          "name": "Warner Bros. Pictures",
+          "origin_country": "US"
+        },
+        {
+          "id": 1515,
+          "logo_path": "/bU7G4LZfEk9SxlnlU7uUdRgOmja.png",
+          "name": "Will Vinton Studios",
+          "origin_country": "US"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "GB",
+          "name": "United Kingdom"
+        },
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "release_date": "2005-09-12",
+      "revenue": 118133252,
+      "runtime": 77,
+      "spoken_languages": [
+        {
+          "english_name": "English",
+          "iso_639_1": "en",
+          "name": "English"
+        }
+      ],
+      "status": "Released",
+      "tagline": "There's been a grave misunderstanding.",
+      "title": "Corpse Bride",
+      "video": false,
+      "vote_average": 7.573,
+      "vote_count": 9122
     }
   ]
 }
