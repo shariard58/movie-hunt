@@ -1,3 +1,4 @@
+import WatchlistButton from "@/app/components/button/WatchListButton";
 import AnimatedRelatedMovies from "@/app/components/movieDetails/AnimatedRelatedMovies";
 import CastSlider from "@/app/components/movieDetails/CastSlider";
 import {
@@ -5,7 +6,6 @@ import {
   fetchMovieDetails,
   fetchRelatedMovies,
 } from "@/lib/movieDetailsApi";
-import { FaRegBookmark } from "react-icons/fa";
 interface PageProps {
   params: Promise<{ id: string }> | undefined;
 }
@@ -95,10 +95,8 @@ export default async function MovieDetails({ params }: PageProps) {
             </li>
           </ul>
 
-          <button className="flex items-center mt-4 bg-[#FF8C00] text-white px-4 py-2 rounded hover:bg-[#FFA500]">
-            <FaRegBookmark className="mr-2" />
-            Add to Watch List
-          </button>
+          {/* watchlist buton  */}
+          <WatchlistButton movie={movieData} />
         </div>
       </div>
 
