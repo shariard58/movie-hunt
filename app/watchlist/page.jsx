@@ -15,6 +15,11 @@ export default function Watchlist() {
     }
   };
 
+  // Refresh function to fetch movies again
+   const refreshWatchlist = () => {
+    fetchWatchlistMovies();
+  };
+
   useEffect(() => {
     fetchWatchlistMovies();
   }, []);
@@ -26,7 +31,7 @@ export default function Watchlist() {
       {watchlistMovies.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {watchlistMovies.map((movie, index) => (
-            <WatchListMovieCard key={index} movie={movie} />
+            <WatchListMovieCard key={index} movie={movie} refreshWatchlist={refreshWatchlist} />
           ))}
         </div>
       ) : (
