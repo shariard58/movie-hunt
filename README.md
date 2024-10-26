@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movie Hunt 🎬
 
-## Getting Started
+Movie Hunt is a responsive web application that lets users explore popular movies using the TMDB API. It includes features like infinite scrolling, search with debouncing, lazy loading, and dynamic data fetching.
 
-First, run the development server:
+## Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Check out the live demo here: [Movie Hunt on Vercel](https://movie-hunt-theta.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Popular Movies List**: Displays a list of popular movies from TMDB API.
+- **Search Functionality**: Search bar with debounced API calls to minimize requests and improve performance.
+- **Infinite Scrolling**: Seamless browsing experience as new movies load while scrolling.
+- **Lazy Loading**: Images load on demand for optimized performance.
+- **Watchlist**: Add movies to a watchlist (mocked locally).
+- **Responsive Design**: Optimized for all screen sizes.
+- **Interactive UI**: Smooth animations with Framer Motion.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pages
 
-## Learn More
+1. **Home Page**:  
+   - Displays a list of popular movies.
+   - Provides a search bar with debouncing for refined search.
+   - Supports infinite scrolling and lazy loading for images.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Movie Details Page**:  
+   - Shows movie details, including cast, genres, and description.
+   - Used animation to show Data 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Watchlist Page**:  
+   - Displays user's watchlist of movies (mock database).
+   - Currently, data may not persist in production due to mock database but works locally.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- **Next.js** (App Router)
+- **React Query** for data fetching and caching
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React Hook Form** for form handling
+- **React Toast** for notifications
+- **Dynamic Sidebar** for navigation
+- **Pagination** for getting mroe data in home page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To run this project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/shariard58/movie-hunt.git
+
+2. nstall dependencies:
+   cd movie-hunt
+   npm install
+
+3. Create a .env file based on .env.example and add your TMDB API key:
+   NEXT_PUBLIC_TMDB_API_KEY=your_api_key
+
+4.Create a .env file based on .env.example and add your TMDB API key:
+  NEXT_PUBLIC_TMDB_API_KEY=your_api_key
+
+5.Local Link 
+ http://localhost:3000
+  
+
+
