@@ -10,7 +10,6 @@ interface WatchlistButtonProps {
 
 const WatchlistButton = ({ movie }: WatchlistButtonProps) => {
   const [isInWatchlist, setIsInWatchlist] = useState(false);
-  console.log("The whole movie is", movie);
   const handleToggleWatchlist = async () => {
     const response = await fetch("/api/watchList", {
       method: "POST",
