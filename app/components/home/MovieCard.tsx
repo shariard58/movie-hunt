@@ -6,7 +6,6 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  // console.log("the movie is", movie);
   const starRating = Math.round((movie.vote_average ?? 6) / 2);
 
   // release date
@@ -17,6 +16,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         day: "numeric",
       })
     : "Unknown Release Date";
+
+  // to check the movieId
+  const movieId = movie?.id ? movie.id.toString() : "1";
 
   return (
     <figure className="shadow-lg p-3 border border-black/10 dark:border-white/10 rounded-xl sm:max-w-[300px]  h-[320px]  sm:h-[340px] md:max-w-[320px] md:h-[360px] lg:max-w-[340px] lg:h-[380px] xl:max-w-[360px] xl:h-[400px] flex flex-col transition-transform duration-300 ease-in-out hover:translate-y-[-5px] cursor-pointer">
@@ -46,7 +48,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         </div>
         <Link
           className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
-          href={`/movies/${movie.id}`}
+          href={`/movies/${movieId}`}
           scroll={false}
         >
           <Image
