@@ -37,7 +37,7 @@ export async function GET() {
 
 // The post api
 export async function POST(request: Request) {
-  const newMovie: Movie = await request.json();
+  const newMovie: SingleMovieType = await request.json();
   const data = readData();
 
   const movieExists = data.watchlist.some((movie) => movie.id === newMovie.id);
