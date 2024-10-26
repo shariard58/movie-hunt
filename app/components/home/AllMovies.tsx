@@ -5,13 +5,13 @@ import { MovieType } from "../../../types/movieTypes";
 import SearchInput from "../input/SearchInput";
 import LoadingSpinner from "../loading/LoadingSpinner";
 import MovieCard from "./MovieCard";
+
 export default function AllMovies() {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  // Debounce the search term
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
@@ -31,7 +31,6 @@ export default function AllMovies() {
     queryFn: async () => {
       let url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
 
-      // If there is a search term with at least 2 characters
       if (debouncedSearchTerm.length >= 2) {
         url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${debouncedSearchTerm}&page=${page}`;
       }
@@ -43,7 +42,6 @@ export default function AllMovies() {
       const data = await response.json();
       return data.results;
     },
-
     enabled: debouncedSearchTerm.length >= 0,
   });
 
@@ -55,7 +53,6 @@ export default function AllMovies() {
     setPage((old) => old - 1);
   };
 
-  // Handle change in search input
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     setPage(1);
@@ -63,7 +60,6 @@ export default function AllMovies() {
 
   const hasMovies = movies?.length || 0;
 
-  // console.log("All the movies are", movies);
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Error fetching movies</div>;
 
@@ -71,8 +67,8 @@ export default function AllMovies() {
     <div className="flex justify-start items-start mb-8">
       <div className="w-full">
         <SearchInput
-          searchValue={searchTerm}
           onSearchChange={handleSearchChange}
+          searchTerm={searchTerm}
         />
 
         <h2 className="sm:text-[18px] md:text-[22px] lg:text-[18px] mb:2 md:mb-3 font-extrabold mt-4">
@@ -94,7 +90,7 @@ export default function AllMovies() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center mt-8">
+        <div className="flex justify-center items-center mt-4">
           <div className="flex gap-4">
             <button
               onClick={loadPreviousMovies}
